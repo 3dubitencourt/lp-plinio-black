@@ -182,10 +182,6 @@
   window.__tema=t;})();
 </script>
 
-<header id="topo">
-  <img src="assets/logo-white.png" alt="Plínio Broker · Cotas Náuticas" width="1160" height="493">
-</header>
-
 <main>
   <section class="hero" id="hero">
     <div class="midia">
@@ -367,14 +363,6 @@
   });
 
   if (window.__tema === 'forte') { document.querySelectorAll('.hero .poster').forEach(function(i){ i.src = 'assets/focker-420.jpg'; }); }
-  if (window.__tema === 'claro') {
-    var hd = document.getElementById('topo');
-    window.addEventListener('scroll', function(){ hd.querySelector('img').src = window.scrollY > 40 ? 'assets/logo-blue.png' : 'assets/logo-white.png'; hd.style.color = window.scrollY > 40 ? '#101735' : '#fff'; }, { passive: true });
-    hd.style.color = '#fff';
-  }
-  var topo = document.getElementById('topo');
-  function t(){ topo.classList.toggle('solido', window.scrollY > window.innerHeight * .8); }
-  window.addEventListener('scroll', t, { passive: true }); t();
 </script>
 </body>
 </html>
