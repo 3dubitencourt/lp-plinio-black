@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>November Black Week · Plínio Broker</title>
 <meta name="description" content="Na compra da cota de uma lancha, ganhe uma cota de jet ski Wake 170 2027. Plínio Broker, Escarpas do Lago, Capitólio/MG.">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:title" content="November Black Week · Plínio Broker">
 <meta property="og:description" content="Na compra da cota de uma lancha, ganhe uma cota de jet ski.">
@@ -52,13 +52,14 @@
   .btn:hover i{transform:translateX(4px)}
 
   /* topo fixo */
-  header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:20px var(--pad);transition:background .3s}
+  header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);transition:background .3s}
   header.solido{background:rgba(10,10,10,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-  header img{height:34px;width:auto}
-  .link{font-size:14px;font-weight:400;border-bottom:1px solid currentColor;padding-bottom:2px}
+  header img{height:32px;width:auto;display:block}
+  .link{display:inline-flex;align-items:center;height:34px;padding:0 14px;border:1px solid currentColor;font-size:13px;font-weight:500;line-height:1;letter-spacing:.02em}
 
   /* abertura com o cadastro */
   .hero{position:relative;min-height:88svh;display:flex;align-items:flex-end;padding:96px var(--pad) clamp(28px,5vh,56px);overflow:hidden;isolation:isolate}
+  .hero .midia{position:absolute;inset:0;z-index:-2}
   .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
   .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,10,.45) 0%,rgba(10,10,10,.1) 20%,rgba(10,10,10,.55) 42%,rgba(10,10,10,.92) 66%,var(--bg) 100%)}
   .hero .txt{width:100%;max-width:980px}
@@ -135,10 +136,51 @@
     .depos blockquote{border-top:1px solid var(--line);border-bottom:0}
     .fixo{display:none}
   }
+
+  /* ===== variações de visual (?tema=claro | marinho | forte) ===== */
+  body.empilhado .hero{display:block;min-height:0;padding:0}
+  body.empilhado .hero::after{display:none}
+  body.empilhado .hero .midia{position:relative;height:44svh;min-height:280px;overflow:hidden}
+  body.empilhado .hero .midia video,body.empilhado .hero .midia .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  body.empilhado .hero .midia::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 40%)}
+  body.empilhado .hero .txt{padding:28px var(--pad) 36px}
+
+  body.t-claro{--bg:#ffffff;--text:#101735;--muted:#4b5270;--line:rgba(16,23,53,.14)}
+  body.t-claro .hero .label,body.t-claro .hero .sub{color:var(--text)}
+  body.t-claro .hero h1 .ev{color:#212c60}
+  body.t-claro .campo input{background:#fff;color:var(--text);border-color:rgba(16,23,53,.35)}
+  body.t-claro .campo input::placeholder{color:#6b7190}
+  body.t-claro .btn{background:#212c60;color:#fff}
+  body.t-claro header.solido{background:rgba(255,255,255,.95)}
+  body.t-claro .fixo{background:rgba(255,255,255,.95)}
+  body.t-claro .par .tag.on{background:#212c60;border-color:#212c60;color:#fff}
+
+  body.t-marinho{--bg:#0d1636;--text:#ffffff;--muted:#c4c9dc;--line:rgba(255,255,255,.18)}
+  body.t-marinho .hero::after{background:linear-gradient(180deg,rgba(13,22,54,.35) 0%,rgba(13,22,54,.2) 25%,rgba(13,22,54,.8) 55%,#0d1636 80%)}
+  body.t-marinho .btn{background:#22b2a4;color:#fff}
+  body.t-marinho .hero h1 .ev{color:#fff}
+  body.t-marinho .hero .label{color:#22b2a4}
+  body.t-marinho .campo input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45)}
+  body.t-marinho header.solido,body.t-marinho .fixo{background:rgba(13,22,54,.95)}
+  body.t-marinho .par .tag.on{background:#22b2a4;border-color:#22b2a4;color:#fff}
+
+  body.t-forte{--bg:#000;--text:#fff;--muted:#d0d0d0;--line:rgba(255,255,255,.25)}
+  body.t-forte .hero h1 .ev{font-weight:700;font-size:clamp(52px,14vw,140px);letter-spacing:-.05em;line-height:.88}
+  body.t-forte .hero h1{font-weight:500}
+  body.t-forte .btn{font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  body.t-forte .campo input{background:#111;border-color:#fff}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+<script>
+  (function(){var t=new URLSearchParams(location.search).get('tema');var b=document.body;
+  if(t==='marinho'){b.classList.add('t-marinho');}
+  else if(t==='forte'){b.classList.add('t-forte','empilhado');}
+  else if(t==='preto'){}
+  else{t='claro';b.classList.add('t-claro','empilhado');}
+  window.__tema=t;})();
+</script>
 
 <header id="topo">
   <img src="assets/logo-white.png" alt="Plínio Broker · Cotas Náuticas" width="1160" height="493">
@@ -147,8 +189,10 @@
 
 <main>
   <section class="hero" id="hero">
-    <img class="poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true">
-    <video id="video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" aria-hidden="true"></video>
+    <div class="midia">
+      <img class="poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true">
+      <video id="video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" aria-hidden="true"></video>
+    </div>
     <div class="txt" id="cadastro">
       <h1><span class="ev">November<br>Black Week</span>Na compra da cota de uma lancha, ganhe uma cota de jet&nbsp;ski.</h1>
       <p class="sub"><b>Jet ski Sea-Doo Wake 170, ano 2027, de presente.</b> Só durante a Black Week.</p>
@@ -326,12 +370,18 @@
   window.addEventListener('load', function () {
     setTimeout(function () {
       var v = document.getElementById('video');
-      if (navigator.connection && navigator.connection.saveData) return;
+      if (window.__tema === 'forte' || (navigator.connection && navigator.connection.saveData)) return;
       v.src = 'assets/hero-web.mp4';
       var p = v.play(); if (p && p.catch) p.catch(function () {});
     }, 800);
   });
 
+  if (window.__tema === 'forte') { document.querySelectorAll('.hero .poster').forEach(function(i){ i.src = 'assets/focker-420.jpg'; }); }
+  if (window.__tema === 'claro') {
+    var hd = document.getElementById('topo');
+    window.addEventListener('scroll', function(){ hd.querySelector('img').src = window.scrollY > 40 ? 'assets/logo-blue.png' : 'assets/logo-white.png'; hd.style.color = window.scrollY > 40 ? '#101735' : '#fff'; }, { passive: true });
+    hd.style.color = '#fff';
+  }
   var topo = document.getElementById('topo');
   function t(){ topo.classList.toggle('solido', window.scrollY > window.innerHeight * .8); }
   window.addEventListener('scroll', t, { passive: true }); t();
