@@ -44,8 +44,9 @@
   a{color:inherit;text-decoration:none}
 
   .label{font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .btn{display:inline-flex;align-items:center;gap:14px;height:54px;padding:0 28px;background:var(--text);color:var(--bg);font-size:15px;font-weight:500;letter-spacing:.01em;transition:opacity .2s}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;height:54px;padding:0 28px;border:0;border-radius:0;background:var(--text);color:var(--bg);font:500 15px/1 "DM Sans",system-ui,sans-serif;letter-spacing:.01em;cursor:pointer;transition:opacity .2s;white-space:nowrap}
   .btn:hover{opacity:.85}
+  .btn:disabled{opacity:.6;cursor:default}
   .btn:focus-visible,.link:focus-visible{outline:1px solid var(--text);outline-offset:4px}
   .btn i{font-style:normal;transition:transform .2s}
   .btn:hover i{transform:translateX(4px)}
@@ -56,13 +57,31 @@
   header img{height:34px;width:auto}
   .link{font-size:14px;font-weight:400;border-bottom:1px solid currentColor;padding-bottom:2px}
 
-  /* abertura */
-  .hero{position:relative;height:100svh;min-height:560px;overflow:hidden}
-  .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.35) 0%,rgba(10,10,10,0) 25%,rgba(10,10,10,0) 45%,rgba(10,10,10,.85) 100%)}
-  .hero .txt{position:absolute;z-index:2;left:var(--pad);right:var(--pad);bottom:clamp(40px,8vh,88px);max-width:900px}
+  /* abertura com o cadastro */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:120px var(--pad) clamp(32px,7vh,80px);overflow:hidden;isolation:isolate}
+  .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,10,.35) 0%,rgba(10,10,10,0) 22%,rgba(10,10,10,.15) 40%,rgba(10,10,10,.9) 72%,var(--bg) 100%)}
+  .hero .txt{width:100%;max-width:980px}
   .hero .label{color:rgba(244,244,242,.78)}
-  .hero h1{margin:18px 0 32px;font-weight:300;font-size:clamp(36px,6.2vw,80px);line-height:1.04;letter-spacing:-.03em}
+  .hero h1{margin:0 0 14px;font-weight:300;font-size:clamp(26px,4.4vw,52px);line-height:1.12;letter-spacing:-.02em;max-width:820px}
+  .hero h1 .ev{display:block;margin-bottom:10px;font-weight:500;font-size:clamp(40px,8vw,104px);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+  .hero .sub{margin:0 0 28px;color:#d8d8d4;font-size:16px;max-width:560px}
+  .hero .sub b{font-weight:500;color:var(--text)}
+
+  .cad{display:grid;grid-template-columns:1fr;gap:10px;max-width:820px}
+  .campo{position:relative}
+  .campo input{width:100%;height:54px;padding:0 16px;border:1px solid rgba(255,255,255,.28);border-radius:0;background:rgba(10,10,10,.45);color:var(--text);font:400 16px/1 "DM Sans",system-ui,sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+  .campo input::placeholder{color:rgba(244,244,242,.6)}
+  .campo input:focus{border-color:var(--text)}
+  .campo input[aria-invalid="true"]{border-color:#e07b6a}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .cad .btn{width:100%}
+  .nota{margin:12px 0 0;font-size:13px;color:var(--muted)}
+  .nota .prova{display:block;margin-top:2px;color:rgba(244,244,242,.55)}
+  .erro{margin:10px 0 0;font-size:13px;color:#e9a093;min-height:0}
+  .ok{max-width:620px}
+  .ok h2{margin:0 0 8px;font-weight:300;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.1}
+  .ok p{margin:0 0 22px;color:#d8d8d4}
 
   /* oferta */
   .oferta{padding:clamp(88px,14vw,160px) var(--pad)}
@@ -85,6 +104,18 @@
   .passo h3{margin:0;font-weight:400;font-size:18px}
   .passo p{margin:4px 0 0;color:var(--muted);font-size:15px}
 
+  /* depoimentos */
+  .depo{padding:0 var(--pad) clamp(88px,14vw,160px)}
+  .depos{display:grid;grid-template-columns:1fr;gap:0;margin-top:24px;border-top:1px solid var(--line)}
+  .depos blockquote{margin:0;padding:24px 0;border-bottom:1px solid var(--line)}
+  .depos p{margin:0;font-size:clamp(19px,2vw,22px);line-height:1.35;letter-spacing:-.01em}
+  .depos cite{display:block;margin-top:10px;font-style:normal;font-size:13px;color:var(--muted)}
+
+  /* botão fixo no celular */
+  .fixo{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(10,10,10,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+  .fixo.on{transform:none}
+  .fixo .btn{width:100%;height:50px}
+
   /* fecho */
   .fim{padding:clamp(88px,14vw,160px) var(--pad);border-top:1px solid var(--line)}
   .fim h2{margin:18px 0 36px;max-width:780px;font-weight:300;font-size:clamp(32px,4.6vw,58px);line-height:1.08;letter-spacing:-.03em}
@@ -95,9 +126,14 @@
   footer nav a:hover{color:var(--text)}
 
   @media (min-width:800px){
+    .cad{grid-template-columns:1fr 1fr auto}
+    .cad .btn{width:auto}
     .par{grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px)}
     .passos{grid-template-columns:repeat(3,1fr);column-gap:clamp(24px,3vw,40px);border-top:0}
     .passo{border-top:1px solid var(--line);border-bottom:0;grid-template-columns:1fr;gap:14px}
+    .depos{grid-template-columns:repeat(3,1fr);column-gap:clamp(24px,3vw,40px);border-top:0}
+    .depos blockquote{border-top:1px solid var(--line);border-bottom:0}
+    .fixo{display:none}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -112,13 +148,25 @@
 <main>
   <section class="hero" id="hero">
     <img class="poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
-      <source src="assets/hero-web.mp4" type="video/mp4">
-    </video>
-    <div class="txt">
-      <span class="label">November Black Week</span>
-      <h1>Na compra da cota de uma lancha, ganhe uma cota de jet&nbsp;ski.</h1>
-      <a class="btn js-wa" href="#" data-origem="hero">Falar no WhatsApp <i>→</i></a>
+    <video id="video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" aria-hidden="true"></video>
+    <div class="txt" id="cadastro">
+      <h1><span class="ev">November<br>Black Week</span>Na compra da cota de uma lancha, ganhe uma cota de jet&nbsp;ski.</h1>
+      <p class="sub"><b>Jet ski Sea-Doo Wake 170, ano 2027, de presente.</b> Só durante a Black Week.</p>
+
+      <form class="cad" id="form" novalidate>
+        <div class="campo"><input id="nome" name="nome" type="text" placeholder="Seu nome" autocomplete="name" aria-label="Seu nome" required maxlength="120"></div>
+        <div class="campo"><input id="whatsapp" name="whatsapp" type="tel" placeholder="WhatsApp com DDD" autocomplete="tel-national" inputmode="tel" aria-label="WhatsApp com DDD" required maxlength="16"></div>
+        <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn" type="submit" id="enviar">Quero a condição <i>→</i></button>
+      </form>
+      <p class="erro" id="erro" role="alert"></p>
+      <p class="nota" id="nota">A equipe da Plínio Broker te chama no WhatsApp. <span class="prova">34,7 mil seguidores no Instagram · Marina Escarpas, Capitólio/MG</span></p>
+
+      <div class="ok" id="ok" hidden>
+        <h2 id="ok-titulo">Recebemos seu cadastro.</h2>
+        <p>A equipe da Plínio Broker vai te chamar no WhatsApp. Se preferir, fale agora:</p>
+        <a class="btn" id="ok-wa" href="#">Abrir o WhatsApp <i>→</i></a>
+      </div>
     </div>
   </section>
 
@@ -153,12 +201,23 @@
     </div>
   </section>
 
+  <section class="depo">
+    <span class="label">Quem navega, recomenda</span>
+    <div class="depos">
+      <blockquote><p>“Chegar na marina e encontrar tudo pronto é outro nível de conforto.”</p><cite>Felipe A., cotista</cite></blockquote>
+      <blockquote><p>“Sempre quis ter um barco, mas a burocracia me afastava. Resolvi tudo em uma conversa.”</p><cite>Bernardo M., cotista</cite></blockquote>
+      <blockquote><p>“Só agendo, apareço e aproveito o lago com a família.”</p><cite>Will N., cotista</cite></blockquote>
+    </div>
+  </section>
+
   <section class="fim">
     <span class="label">Só nesta Black Week</span>
     <h2>Seu lugar no Mar de Minas está esperando.</h2>
-    <a class="btn js-wa" href="#" data-origem="final">Falar no WhatsApp <i>→</i></a>
+    <a class="btn" href="#cadastro" id="ir-cadastro">Quero a condição <i>→</i></a>
   </section>
 </main>
+
+<div class="fixo" id="fixo"><a class="btn" href="#cadastro" id="fixo-btn">Quero a condição da Black <i>→</i></a></div>
 
 <footer>
   <p>Condição válida durante a November Black Week, para as lanchas participantes e conforme disponibilidade de cotas. © 2026 Plínio Broker · Marina Escarpas, Capitólio/MG.</p>
@@ -169,16 +228,110 @@
 </footer>
 
 <script>
+  // Para onde vão os cadastros: app da Web da planilha "Leads · LP Black Week Plínio Broker"
+  var PLANILHA_URL = 'https://script.google.com/macros/s/AKfycbzY1zAYoUmkRFfJ1u_i5aiOhVU5rZT4wr_TUC4utPhFeBeGukiVWO4aOZKp9Fklso-gWw/exec';
   var WA_NUMERO = '5531997209941';
-  var WA_TEXTO = 'Olá! Vi a November Black Week da Plínio Broker e quero saber da condição: cota de lancha com cota de jet ski de presente.';
-  var waLink = 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(WA_TEXTO);
+
+  function textoWA(nome) {
+    return 'Olá! ' + (nome ? 'Sou ' + nome + '. ' : '') + 'Vi a November Black Week da Plínio Broker e quero saber da condição: cota de lancha com cota de jet ski de presente.';
+  }
+  // Dentro do Instagram/Facebook o wa.me às vezes não abre; nesses casos usa o link direto do app.
+  function linkWA(nome) {
+    var t = encodeURIComponent(textoWA(nome));
+    var web = 'https://wa.me/' + WA_NUMERO + '?text=' + t;
+    var ua = navigator.userAgent || '';
+    if (/FBAN|FBAV|Instagram|FB_IAB/i.test(ua)) {
+      if (/Android/i.test(ua)) return 'intent://send?phone=' + WA_NUMERO + '&text=' + t + '#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=' + encodeURIComponent(web) + ';end';
+      return 'whatsapp://send?phone=' + WA_NUMERO + '&text=' + t;
+    }
+    return web;
+  }
+  function rastrear(evento, dados) {
+    try { gtag('event', evento, dados || {}); } catch (e) {}
+    try { if (window.fbq) fbq('track', evento === 'generate_lead' ? 'Lead' : 'Contact'); } catch (e) {}
+  }
+
   document.querySelectorAll('.js-wa').forEach(function (a) {
-    a.href = waLink; a.target = '_blank'; a.rel = 'noopener';
-    a.addEventListener('click', function () {
-      try { gtag('event', 'clique_whatsapp', { origem: a.dataset.origem || '' }); } catch (e) {}
-      try { if (window.fbq) fbq('track', 'Contact'); } catch (e) {}
+    a.href = linkWA('');
+    a.target = '_blank'; a.rel = 'noopener';
+    a.addEventListener('click', function () { rastrear('clique_whatsapp', { origem: a.dataset.origem || '' }); });
+  });
+
+  // Máscara do telefone: (31) 99999-9999
+  var fone = document.getElementById('whatsapp');
+  fone.addEventListener('input', function () {
+    var d = fone.value.replace(/\D/g, '');
+    if (d.length > 11 && d.indexOf('55') === 0) d = d.slice(2);
+    d = d.slice(0, 11);
+    var f = d;
+    if (d.length > 2) f = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length > 7) f = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length === 11 ? 7 : 6) + '-' + d.slice(d.length === 11 ? 7 : 6);
+    fone.value = f;
+    fone.removeAttribute('aria-invalid');
+  });
+
+  var form = document.getElementById('form');
+  var nome = document.getElementById('nome');
+  var erro = document.getElementById('erro');
+  nome.addEventListener('input', function () { nome.removeAttribute('aria-invalid'); });
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    erro.textContent = '';
+    var n = nome.value.trim();
+    var d = fone.value.replace(/\D/g, '');
+    if (n.length < 2) { nome.setAttribute('aria-invalid', 'true'); erro.textContent = 'Escreva seu nome.'; nome.focus(); return; }
+    if (d.length < 10) { fone.setAttribute('aria-invalid', 'true'); erro.textContent = 'Confira o WhatsApp com DDD.'; fone.focus(); return; }
+
+    var q = new URLSearchParams(location.search);
+    var dados = new URLSearchParams({
+      nome: n, whatsapp: d, site: form.site.value,
+      utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '',
+      utm_campaign: q.get('utm_campaign') || '', utm_content: q.get('utm_content') || '',
+      utm_term: q.get('utm_term') || '', pagina: location.href.split('#')[0]
+    });
+
+    var btn = document.getElementById('enviar');
+    btn.disabled = true;
+    var foi = false;
+    try { foi = navigator.sendBeacon && navigator.sendBeacon(PLANILHA_URL, dados); } catch (e) {}
+    if (!foi) { try { fetch(PLANILHA_URL, { method: 'POST', mode: 'no-cors', body: dados, keepalive: true }); } catch (e) {} }
+    rastrear('generate_lead', { origem: 'formulario' });
+
+    var primeiro = n.split(' ')[0];
+    var wa = linkWA(n);
+    form.hidden = true;
+    document.getElementById('nota').hidden = true;
+    document.getElementById('ok-titulo').textContent = 'Pronto, ' + primeiro + '. Recebemos seu cadastro.';
+    var okWa = document.getElementById('ok-wa');
+    okWa.href = wa;
+    okWa.addEventListener('click', function () { rastrear('clique_whatsapp', { origem: 'pos_cadastro' }); });
+    document.getElementById('ok').hidden = false;
+    setTimeout(function () { location.href = wa; }, 900);
+  });
+
+  ['ir-cadastro', 'fixo-btn'].forEach(function (id) {
+    document.getElementById(id).addEventListener('click', function () {
+      setTimeout(function () { if (!form.hidden) nome.focus({ preventScroll: true }); }, 500);
     });
   });
+
+  // Botão fixo aparece quando o formulário sai da tela
+  if ('IntersectionObserver' in window) {
+    var fixo = document.getElementById('fixo');
+    new IntersectionObserver(function (es) { fixo.classList.toggle('on', !es[0].isIntersecting); }, { threshold: 0 }).observe(document.getElementById('cadastro'));
+  }
+
+  // Vídeo só depois que a página abriu (a foto aparece na hora)
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var v = document.getElementById('video');
+      if (navigator.connection && navigator.connection.saveData) return;
+      v.src = 'assets/hero-web.mp4';
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }, 800);
+  });
+
   var topo = document.getElementById('topo');
   function t(){ topo.classList.toggle('solido', window.scrollY > window.innerHeight * .8); }
   window.addEventListener('scroll', t, { passive: true }); t();
